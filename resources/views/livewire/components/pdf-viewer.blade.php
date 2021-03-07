@@ -2,19 +2,19 @@
   x-data="{ 
   open: @entangle('openModal'),
   url: @entangle('url'),
-  visorPDF: null
+  PdfViewer: null
 }"
   x-init="
-  visorPDF = VisorPDF({
+  PdfViewer = PDFViewer({
     container: $refs.viewer,
     canvas: null
   })
   $watch('url', function (url) {
     if (url) {
-      visorPDF.loadSource(url);
-      visorPDF.init();
+      PdfViewer.loadSource(url);
+      PdfViewer.init();
     } else {
-      visorPDF.reset();
+      PdfViewer.reset();
     }
   })
 "
@@ -45,7 +45,7 @@
         ></span>
       </div>
       <button
-        @click="visorPDF.prevPage()"
+        @click="PdfViewer.prevPage()"
         id="prev"
         type="button"
         class="button is-small is-success"
@@ -53,7 +53,7 @@
         <i class="fas fa-chevron-left"></i>
       </button>
       <button
-        @click="visorPDF.nextPage()"
+        @click="PdfViewer.nextPage()"
         id="next"
         type="button"
         class="button is-small is-success"
@@ -61,7 +61,7 @@
         <i class="fas fa-chevron-right"></i>
       </button>
       <button
-        @click="visorPDF.upZoom(0.1)"
+        @click="PdfViewer.upZoom(0.1)"
         id="upZoom"
         type="button"
         class="button is-small is-primary"
@@ -69,7 +69,7 @@
         <i class="fas fa-search-plus"></i>
       </button>
       <button
-        @click="visorPDF.downZoom(0.1)"
+        @click="PdfViewer.downZoom(0.1)"
         id="downZoom"
         type="button"
         class="button is-small is-primary"
